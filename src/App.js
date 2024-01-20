@@ -18,7 +18,6 @@ function App() {
   const [bordersData, setBordersData] = useState({});
   const [userInputs, setUserInputs] = useState([]);
   const [hasGivenUp, setHasGivenUp] = useState(false);
-  const [hasWon, setHasWon] = useState(false);
   const [error, setError] = useState('');
   const [resetFlag, setResetFlag] = useState(false);
   
@@ -56,7 +55,6 @@ function App() {
     setHighlightedCountry(null);
     setHighlightedCountries([]); // Reset highlighted countries
     setHasGivenUp(false);
-    setHasWon(false);
     setResetFlag(true);
     setTimeout(() => setResetFlag(false), 100);
   };
