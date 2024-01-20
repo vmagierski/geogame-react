@@ -14,6 +14,7 @@ function App() {
   const [initialCountry, setInitialCountry] = useState(null);
   const [showModal, setShowModal] = useState(true);
   const [showGiveUpModal, setShowGiveUpModal] = useState(false);
+  const [showYouWinModal, setShowYouWinModal] = useState(false);
   const [bordersData, setBordersData] = useState({});
   const [userInputs, setUserInputs] = useState([]);
   const [hasGivenUp, setHasGivenUp] = useState(false);
@@ -91,6 +92,11 @@ function App() {
     setShowGiveUpModal(false);
     startNewGame();
   }
+  const handleCloseYouWinModal = () => {
+    setShowYouWinModal(false);
+    startNewGame();
+  }
+
 
   const handleSubmit = () => {
     handleKeyPress({ key: 'Enter' });
@@ -118,10 +124,7 @@ const handleKeyPress = (event) => {
             console.log("updatedInputs (i.e. countries the user has already typed):", [...updatedInputs]);
             if (updatedInputs.size === borderCountries.length) {
               // User has input all bordering countries
-              setHasWon(true);
-              alert("Congratulations! You've identified all bordering countries!");
-              startNewGame();
-
+              setShowYouWinModal(true);
             }
             return [...updatedInputs];
           });
@@ -173,6 +176,20 @@ const countryNames = Object.keys(bordersData);
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleCloseGiveUpModal}>
+            Play Again
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+       <Modal show={showYouWinModal} onHide={handleCloseYouWinModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Well Done!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p> Yay! You Win!</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseYouWinModal}>
             Play Again
           </Button>
         </Modal.Footer>
