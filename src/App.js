@@ -114,9 +114,9 @@ const handleKeyPress = (event) => {
       const borderCountries = bordersData[initialCountry.properties.name].map(country => country.toLowerCase());
       console.log("Input Country:", inputCountry);
 
-      if (borderCountries.includes(inputCountry)) {
-        console.log("Setting highlighted country:", inputCountry);
-        setHighlightedCountries(inputCountry);
+    if (borderCountries.includes(inputCountry)) {
+      console.log("Setting highlighted country:", inputCountry);
+      setHighlightedCountries(prevCountries => [...prevCountries, inputCountry]); // Add to highlighted countries
           setUserInputs(prevInputs => {
             const updatedInputs = new Set([...prevInputs, inputCountry]);
             console.log("updatedInputs (i.e. countries the user has already typed):", [...updatedInputs]);
