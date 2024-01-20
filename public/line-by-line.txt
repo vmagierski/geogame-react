@@ -1,0 +1,207 @@
+Line 1: Republic of China, Iran, Pakistan, Tajikistan, Turkmenistan, Uzbekistan
+Line 2: Greece, Kosovo, North Macedonia, Montenegro
+Line 3: Libya, Mali, Mauritania, Morocco, Niger, Tunisia, Western Sahara
+Line 4: France, Spain
+Line 5: Democratic Republic of the Congo, Republic of the Congo, Namibia, Zambia
+Line 6:
+Line 7: Bolivia, Brazil, Chile, Paraguay, Uruguay
+Line 8: Azerbaijan, Georgia, Iran, Turkey
+Line 9:
+Line 10: Czech Republic, Germany, Hungary, Italy, Liechtenstein, Slovakia, Slovenia, Switzerland
+Line 11: Armenia, Georgia, Iran, Russia, Turkey
+Line 12:
+Line 13: Saudi Arabia
+Line 14: India, Myanmar
+Line 15:
+Line 16: Latvia, Lithuania, Poland, Russia, Ukraine
+Line 17: France, Germany, Luxembourg, Netherlands
+Line 18: Guatemala, Mexico
+Line 19: Burkina Faso, Niger, Nigeria, Togo
+Line 20: Republic of China, India
+Line 21: Argentina, Brazil, Chile, Paraguay, Peru
+Line 22: Croatia, Montenegro, Serbia
+Line 23: Namibia, South Africa, Zambia, Zimbabwe
+Line 24: Argentina, Bolivia, Colombia, French Guiana, Guyana, Paraguay, Peru, Suriname, Uruguay, Venezuela
+Line 25: Malaysia
+Line 26: Greece, North Macedonia, Romania, Serbia, Turkey
+Line 27: Benin, Cte, Ghana, Mali, Niger, Togo
+Line 28: Democratic Republic of the Congo, Rwanda, Tanzania
+Line 29: Laos, Thailand, Vietnam
+Line 30: Central African Republic, Chad, Republic of the Congo, Equatorial Guinea, Gabon, Nigeria
+Line 31: United States, Greenland, Saint Pierre and Miquelon
+Line 32:
+Line 33: Cameroon, Chad, Democratic Republic of the Congo, Republic of the Congo, South Sudan, Sudan
+Line 34: Cameroon, Central African Republic, Libya, Niger, Nigeria, Sudan
+Line 35: Argentina, Bolivia, Peru
+Line 36: Afghanistan, Bhutan, India, Kazakhstan, North Korea, Kyrgyzstan, Laos, Mongolia, Myanmar, Nepal, Pakistan, Russia, Tajikistan, Vietnam
+Line 37: Brazil, Ecuador, Panama, Peru, Venezuela
+Line 38:
+Line 39: Angola, Burundi, Central African Republic, Republic of the Congo, Rwanda, South Sudan, Tanzania, Uganda, Zambia
+Line 40: Angola, Cameroon, Central African Republic, Democratic Republic of the Congo, Gabon
+Line 41: Nicaragua, Panama
+Line 42: Burkina Faso, Ghana, Guinea, Liberia, Mali
+Line 43: Bosnia and Herzegovina, Hungary, Montenegro, Serbia, Slovenia
+Line 44:
+Line 45: Akrotiri and Dhekelia
+Line 46: Austria, Germany, Poland, Slovakia
+Line 47: Germany
+Line 48: Germany, Canada
+Line 49: Eritrea, Ethiopia, Somaliland
+Line 50:
+Line 51: Haiti
+Line 52: Indonesia
+Line 53: Colombia, Peru
+Line 54: Gaza Strip, Israel, Libya, Sudan
+Line 55: Guatemala, Honduras
+Line 56: Cameroon, Gabon
+Line 57: Djibouti, Ethiopia, Sudan
+Line 58: Latvia, Russia
+Line 59: Mozambique, South Africa
+Line 60: Djibouti, Eritrea, Kenya, Somalia, South Sudan, Sudan
+Line 61:
+Line 62: Norway, Sweden, Russia
+Line 63: Andorra, Belgium, Germany, Italy, Luxembourg, Monaco, Spain, Switzerland
+Line 64: Andorra, Belgium, Brazil, Canada Germany, Italy, Luxembourg, Monaco, Sint Maarten, Spain, Suriname, Switzerland
+Line 65: Cameroon, Republic of the Congo, Equatorial Guinea
+Line 66: Senegal
+Line 67: Armenia, Azerbaijan, Russia, Turkey, South Ossetia
+Line 68: Austria, Belgium, Czech Republic, Denmark, France, Luxembourg, Netherlands, Poland, Switzerland
+Line 69: Burkina Faso, Cte, Togo
+Line 70: Albania, Bulgaria, Turkey, North Macedonia
+Line 71:
+Line 72: Belize, El Salvador, Honduras, Mexico
+Line 73: Cte, Liberia, Mali, Senegal, Sierra Leone
+Line 74: Guinea, Senegal
+Line 75: Brazil, Suriname, Venezuela
+Line 76: Dominican Republic
+Line 77: Guatemala, El Salvador, Nicaragua
+Line 78: Republic of China
+Line 79: Austria, Croatia, Romania, Serbia, Slovakia, Slovenia, Ukraine
+Line 80:
+Line 81: Bangladesh, Bhutan, Republic of China, Myanmar, Nepal, Pakistan, Sri Lanka, on a land shoal onRam Setu, see alsoBorders of India
+Line 82: East Timor, Malaysia, Papua New Guinea
+Line 83: Afghanistan, Armenia, Azerbaijan, Iraq, Pakistan, Turkey, Turkmenistan
+Line 84: Iran, Jordan, Kuwait, Saudi Arabia, Syria, Turkey
+Line 85: United Kingdom
+Line 86: Egypt, Gaza Strip, Jordan, Lebanon, Syria, West Bank
+Line 87: Austria, France, San Marino, Slovenia, Switzerland, Vatican City
+Line 88:
+Line 89:
+Line 90: Iraq, Israel, Saudi Arabia, Syria, West Bank
+Line 91: Republic of China, Kyrgyzstan, Russia, Turkmenistan, Uzbekistan
+Line 92: Ethiopia, Somalia, South Sudan, Tanzania, Uganda
+Line 93:
+Line 94: Republic of China, South Korea, Russia
+Line 95: North Korea
+Line 96: Albania, Montenegro, North Macedonia, Serbia
+Line 97: Iraq, Saudi Arabia
+Line 98: Republic of China, Kazakhstan, Tajikistan, Uzbekistan
+Line 99: Cambodia, Republic of China, Myanmar, Thailand, Vietnam
+Line 100: Belarus, Estonia, Lithuania, Russia
+Line 101: Israel, Syria
+Line 102: South Africa
+Line 103: Guinea, Cte, Sierra Leone
+Line 104: Algeria, Chad, Egypt, Niger, Sudan, Tunisia
+Line 105: Austria, Switzerland
+Line 106: Belarus, Latvia, Poland, Russia
+Line 107: Belgium, France, Germany
+Line 108: Republic of China
+Line 109:
+Line 110:
+Line 111: Mozambique, Tanzania, Zambia
+Line 112: Brunei, Indonesia, Thailand
+Line 113:
+Line 114: Algeria, Burkina Faso, Cte, Guinea, Mauritania, Niger, Senegal
+Line 115:
+Line 116:
+Line 117: Algeria, Mali, Senegal, Western Sahara
+Line 118:
+Line 119: Belize, Guatemala, United States
+Line 120:
+Line 121: Romania, Ukraine
+Line 122: France
+Line 123: Republic of China, Russia
+Line 124: Albania, Bosnia and Herzegovina, Croatia, Kosovo, Serbia
+Line 125: Algeria, Western Sahara, Spain
+Line 126: Eswatini, Malawi, South Africa, Tanzania, Zambia, Zimbabwe
+Line 127: Bangladesh, Republic of China, India, Laos, Thailand
+Line 128: Angola, Botswana, South Africa, Zambia
+Line 129:
+Line 130: Republic of China, India
+Line 131: Belgium, Germany
+Line 132: Belgium, Germany, Saint Martin
+Line 133:
+Line 134: Costa Rica, Honduras
+Line 135: Algeria, Benin, Burkina Faso, Chad, Libya, Mali, Nigeria
+Line 136: Benin, Cameroon, Chad, Niger
+Line 137: Albania, Bulgaria, Greece, Kosovo, Serbia
+Line 138: Finland, Sweden, Russia
+Line 139: Saudi Arabia, United Arab Emirates, Yemen
+Line 140: Afghanistan, India, Iran, Republic of China
+Line 141:
+Line 142: Egypt, Israel, Jordan
+Line 143: Colombia, Costa Rica
+Line 144: Indonesia
+Line 145: Argentina, Bolivia, Brazil
+Line 146: Bolivia, Brazil, Chile, Colombia, Ecuador
+Line 147:
+Line 148: Belarus, Czech Republic, Germany, Lithuania, Russia, Slovakia, Ukraine
+Line 149: Spain
+Line 150: Saudi Arabia
+Line 151: Bulgaria, Hungary, Moldova, Serbia, Ukraine
+Line 152: Azerbaijan, Belarus, Republic of China, Estonia, Finland, Georgia, Kazakhstan, North Korea, Latvia, Lithuania, Mongolia, Norway, Poland, Ukraine
+Line 153: Burundi, Democratic Republic of the Congo, Tanzania, Uganda
+Line 154:
+Line 155:
+Line 156: Canada
+Line 157:
+Line 158:
+Line 159: Italy
+Line 160:
+Line 161: Bahrain Iraq, Jordan, Kuwait, Oman, Qatar, United Arab Emirates, Yemen
+Line 162: The Gambia, Guinea, Mali, Mauritania
+Line 163: Bosnia and Herzegovina, Bulgaria, Croatia, Hungary, Kosovo, Montenegro, North Macedonia, Romania
+Line 164:
+Line 165: Guinea, Liberia
+Line 166:
+Line 167: Austria, Czech Republic, Hungary, Poland, Ukraine
+Line 168: Austria, Croatia, Italy, Hungary
+Line 169:
+Line 170: Djibouti, Ethiopia, Kenya
+Line 171: Botswana, Eswatini, Lesotho, Mozambique, Namibia, Zimbabwe
+Line 172: Russia, Georgia
+Line 173: Central African Republic, Democratic Republic of the Congo, Ethiopia, Kenya, Sudan, Uganda
+Line 174: Andorra, France, Gibraltar, Portugal, Morocco
+Line 175:
+Line 176: Central African Republic, Chad, Egypt, Eritrea, Ethiopia, Libya, South Sudan
+Line 177: Brazil, French Guiana, Guyana
+Line 178: Finland, Norway
+Line 179: Austria, France, Italy, Liechtenstein, Germany
+Line 180: Iraq, Israel, Jordan, Lebanon, Turkey
+Line 181:
+Line 182: Afghanistan, Republic of China, Kyrgyzstan, Uzbekistan
+Line 183: Burundi, Democratic Republic of the Congo, Kenya, Malawi, Mozambique, Rwanda, Uganda, Zambia
+Line 184: Cambodia, Laos, Malaysia, Myanmar
+Line 185: Benin, Burkina Faso, Ghana
+Line 186:
+Line 187:
+Line 188: Algeria, Libya
+Line 189: Armenia, Azerbaijan, Bulgaria, Georgia, Greece, Iran, Iraq, Syria
+Line 190: Afghanistan, Iran, Kazakhstan, Uzbekistan
+Line 191:
+Line 192: Democratic Republic of the Congo, Kenya, Rwanda, South Sudan, Tanzania
+Line 193: Belarus, Hungary, Moldova, Poland, Romania, Russia, Slovakia
+Line 194: Oman, Saudi Arabia
+Line 195: Ireland
+Line 196: Cyprus, Ireland, Spain
+Line 197: Canada, Mexico
+Line 198: Argentina, Brazil
+Line 199: Afghanistan, Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan
+Line 200:
+Line 201: Italy
+Line 202: Brazil, Colombia, Guyana
+Line 203: Cambodia, Republic of China, Laos
+Line 204: Algeria, Mauritania, Morocco
+Line 205: Oman, Saudi Arabia
+Line 206: Angola, Botswana, Democratic Republic of the Congo, Malawi, Mozambique, Namibia, Tanzania, Zimbabwe
+Line 207: Botswana, Mozambique, South Africa, Zambia
