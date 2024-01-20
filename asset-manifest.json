@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/geogame-react/static/css/main.d9af33d1.css",
-    "main.js": "/geogame-react/static/js/main.75713a63.js",
+    "main.js": "/geogame-react/static/js/main.a9887f91.js",
     "static/js/787.9e9f4ffd.chunk.js": "/geogame-react/static/js/787.9e9f4ffd.chunk.js",
     "index.html": "/geogame-react/index.html",
     "main.d9af33d1.css.map": "/geogame-react/static/css/main.d9af33d1.css.map",
-    "main.75713a63.js.map": "/geogame-react/static/js/main.75713a63.js.map",
+    "main.a9887f91.js.map": "/geogame-react/static/js/main.a9887f91.js.map",
     "787.9e9f4ffd.chunk.js.map": "/geogame-react/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d9af33d1.css",
-    "static/js/main.75713a63.js"
+    "static/js/main.a9887f91.js"
   ]
 }
