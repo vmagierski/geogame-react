@@ -1,6 +1,6 @@
 {
     "Afghanistan": [
-        "Republic of China",
+        "People's Republic of China",
         "Iran",
         "Pakistan",
         "Tajikistan",
@@ -97,7 +97,7 @@
         "Togo"
     ],
     "Bhutan": [
-        "Republic of China",
+        "People's Republic of China",
         "India"
     ],
     "Bolivia": [
@@ -264,12 +264,8 @@
         "Poland",
         "Slovakia"
     ],
-    "Denmark(constituent country)": [
-        "Germany"
-    ],
     "Denmark": [
-        "Germany",
-        "Canada"
+        "Germany"
     ],
     "Djibouti": [
         "Eritrea",
@@ -288,7 +284,7 @@
         "Peru"
     ],
     "Egypt": [
-        "Gaza Strip",
+        "Palestine",
         "Israel",
         "Libya",
         "Sudan"
@@ -407,7 +403,7 @@
         "Nicaragua"
     ],
     "Hong Kong[ae]": [
-        "Republic of China"
+        "People's Republic of China"
     ],
     "Hungary": [
         "Austria",
@@ -422,7 +418,7 @@
     "India": [
         "Bangladesh",
         "Bhutan",
-        "Republic of China",
+        "People's Republic of China",
         "Myanmar",
         "Nepal",
         "Pakistan",
@@ -455,11 +451,10 @@
     ],
     "Israel": [
         "Egypt",
-        "Gaza Strip",
         "Jordan",
         "Lebanon",
         "Syria",
-        "West Bank"
+        "Palestine"
     ],
     "Italy": [
         "Austria",
@@ -476,10 +471,10 @@
         "Israel",
         "Saudi Arabia",
         "Syria",
-        "West Bank"
+        "Palestine"
     ],
     "Kazakhstan": [
-        "Republic of China",
+        "People's Republic of China",
         "Kyrgyzstan",
         "Russia",
         "Turkmenistan",
@@ -494,7 +489,7 @@
     ],
     "Kiribati": [],
     "North Korea": [
-        "Republic of China",
+        "People's Republic of China",
         "South Korea",
         "Russia"
     ],
@@ -512,14 +507,14 @@
         "Saudi Arabia"
     ],
     "Kyrgyzstan": [
-        "Republic of China",
+        "People's Republic of China",
         "Kazakhstan",
         "Tajikistan",
         "Uzbekistan"
     ],
     "Laos": [
         "Cambodia",
-        "Republic of China",
+        "People's Republic of China",
         "Myanmar",
         "Thailand",
         "Vietnam"
@@ -566,7 +561,7 @@
         "Germany"
     ],
     "Macau[aj](People's Republic of China)": [
-        "Republic of China"
+        "People's Republic of China"
     ],
     "Madagascar": [],
     "Madeira[ak](Portugal)": [],
@@ -613,7 +608,7 @@
         "France"
     ],
     "Mongolia": [
-        "Republic of China",
+        "People's Republic of China",
         "Russia"
     ],
     "Montenegro": [
@@ -638,7 +633,7 @@
     ],
     "Myanmar": [
         "Bangladesh",
-        "Republic of China",
+        "People's Republic of China",
         "India",
         "Laos",
         "Thailand"
@@ -651,7 +646,7 @@
     ],
     "Nauru": [],
     "Nepal": [
-        "Republic of China",
+        "People's Republic of China",
         "India"
     ],
     "Netherlands": [
@@ -699,10 +694,10 @@
         "Afghanistan",
         "India",
         "Iran",
-        "Republic of China"
+        "People's Republic of China"
     ],
     "Palau": [],
-    "Palestine[w]": [
+    "Palestine": [
         "Egypt",
         "Israel",
         "Jordan"
@@ -752,7 +747,7 @@
     "Russia": [
         "Azerbaijan",
         "Belarus",
-        "Republic of China",
+        "People's Republic of China",
         "Estonia",
         "Finland",
         "Georgia",
@@ -895,7 +890,7 @@
     "Taiwan": [],
     "Tajikistan": [
         "Afghanistan",
-        "Republic of China",
+        "People's Republic of China",
         "Kyrgyzstan",
         "Uzbekistan"
     ],
@@ -992,7 +987,7 @@
     ],
     "Vietnam": [
         "Cambodia",
-        "Republic of China",
+        "People's Republic of China",
         "Laos"
     ],
     "Western Sahara": [
