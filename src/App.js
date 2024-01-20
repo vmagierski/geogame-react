@@ -71,6 +71,7 @@ function App() {
                   const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
                   const pseudoRandom = new seedrandom(seed);
               randomCountry = data.features[Math.floor(pseudoRandom() * data.features.length)];
+              console.log(randomCountry);
             } while (!isValidCountry(randomCountry));
             setInitialCountry(randomCountry);
           }

@@ -29,7 +29,7 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
   }, [dataUrl]);
 
   const getStyle = (feature) => {
-  const featureNameLower = feature.properties.name.toLowerCase();
+  const featureNameLower = feature.properties.name_en.toLowerCase();
   // Get correct answers based on the initialCountry
   const correctAnswers = initialCountry ? bordersData[initialCountry.properties.name].map(name => name.toLowerCase()) : [];
 
