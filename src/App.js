@@ -1,35 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
 import GeoMap from './GeoMap';
+import seedrandom from 'seedrandom';
 import './App.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
+
   const [highlightedCountry, setHighlightedCountry] = useState(null);
+  const [highlightedCountries, setHighlightedCountries] = useState([]);
+  
   const [initialCountry, setInitialCountry] = useState(null);
   const [showModal, setShowModal] = useState(true);
   const [showGiveUpModal, setShowGiveUpModal] = useState(false);
   const [bordersData, setBordersData] = useState({});
   const [userInputs, setUserInputs] = useState([]);
   const [hasGivenUp, setHasGivenUp] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
   const [error, setError] = useState('');
-
+  const [resetFlag, setResetFlag] = useState(false);
+  
 
   useEffect(() => fetchBordersData(), []);
   const fetchBordersData = () => {
-    fetch('/country-borders.json')
+    fetch('/geogame-react/country-borders.json')
       .then(res => res.json())
       .then(data => setBordersData(data))
       .catch(err => console.error('Error loading borders data:', err));
   };
 
   const handleGiveUp = () => {
-    if (initialCountry && isValidCountry(initialCountry)) {
-      setHasGivenUp(true);
-      setShowGiveUpModal(true);
-    }
+    setHasGivenUp(true);
+    setShowGiveUpModal(true);
+    
+    // Optional: Highlight the correct countries immediately
+    // If bordersData for the initial country is an array of country names
+    const correctAnswers = bordersData[initialCountry.properties.name].map(name => name.toLowerCase());
+    setHighlightedCountries(correctAnswers);
   };
 
   const isValidCountry = (country) => {
@@ -44,19 +52,26 @@ function App() {
   const resetGameState = () => {
     setUserInputs([]);
     setShowGiveUpModal(false);
-    setHighlightedCountry([]);
+    setHighlightedCountry(null);
+    setHighlightedCountries([]); // Reset highlighted countries
     setHasGivenUp(false);
+    setHasWon(false);
+    setResetFlag(true);
+    setTimeout(() => setResetFlag(false), 100);
   };
 
   const selectRandomCountry = () => {
     if (Object.keys(bordersData).length > 0) {
-      fetch('/custom.geo.json')
+      fetch('/geogame-react/custom.geo.json')
         .then(res => res.json())
         .then(data => {
           if (data.features.length > 0) {
             let randomCountry;
             do {
-              randomCountry = data.features[Math.floor(Math.random() * data.features.length)];
+                  const today = new Date();
+                  const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+                  const pseudoRandom = new seedrandom(seed);
+              randomCountry = data.features[Math.floor(pseudoRandom() * data.features.length)];
             } while (!isValidCountry(randomCountry));
             setInitialCountry(randomCountry);
           }
@@ -75,8 +90,8 @@ function App() {
   const handleCloseGiveUpModal = () => {
     setShowGiveUpModal(false);
     startNewGame();
-
   }
+
   const handleSubmit = () => {
     handleKeyPress({ key: 'Enter' });
   };
@@ -85,6 +100,8 @@ function App() {
     setInputValue(event.target.value);
   };
 
+
+
 const handleKeyPress = (event) => {
   if (event.key === 'Enter') {
     const inputCountry = inputValue.trim().toLowerCase();
@@ -92,17 +109,19 @@ const handleKeyPress = (event) => {
     if (initialCountry && bordersData[initialCountry.properties.name]) {
       const borderCountries = bordersData[initialCountry.properties.name].map(country => country.toLowerCase());
       console.log("Input Country:", inputCountry);
-      console.log("Border Countries:", borderCountries);
 
       if (borderCountries.includes(inputCountry)) {
         console.log("Setting highlighted country:", inputCountry);
-        setHighlightedCountry(inputCountry);
+        setHighlightedCountries(inputCountry);
           setUserInputs(prevInputs => {
             const updatedInputs = new Set([...prevInputs, inputCountry]);
             console.log("updatedInputs (i.e. countries the user has already typed):", [...updatedInputs]);
             if (updatedInputs.size === borderCountries.length) {
               // User has input all bordering countries
+              setHasWon(true);
               alert("Congratulations! You've identified all bordering countries!");
+              startNewGame();
+
             }
             return [...updatedInputs];
           });
@@ -119,19 +138,16 @@ const handleKeyPress = (event) => {
   }
 };
 
-
-console.log(initialCountry ? "initial random country =  : " + initialCountry.properties.name : "");
 const countryNames = Object.keys(bordersData);
-console.log(initialCountry ? "answers  : " + bordersData[initialCountry.properties.name] : "");
 
   return (
     <div className="App bg-texture">
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Welcome to the Geography Game!</Modal.Title>
+          <Modal.Title>Country Borders Game!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Hello, player! Let's play. What countries (clockwise) share borders with {initialCountry ? 
+          <p>Can you list the countries that share borders with {initialCountry ? 
                     ` ${initialCountry.properties.name}?` 
                     : ' Loading...'}</p>
         </Modal.Body>
@@ -147,9 +163,13 @@ console.log(initialCountry ? "answers  : " + bordersData[initialCountry.properti
           <Modal.Title>you tried</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p> The countries you missed were: {initialCountry ? 
+          <p> The correct answers were: {initialCountry ? 
                     ` ${bordersData[initialCountry.properties.name]}` 
                     : ' Loading...'}</p>
+          <p> The countries you guessed were: {userInputs ? 
+              ` ${userInputs}` 
+              : ' Loading...'}</p>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleCloseGiveUpModal}>
@@ -165,11 +185,13 @@ console.log(initialCountry ? "answers  : " + bordersData[initialCountry.properti
         <div className="row justify-content-center">
           <div className="col-lg-8">
               <GeoMap 
-                dataUrl="/custom.geo.json" 
+                dataUrl="/geogame-react/custom.geo.json" 
                 highlightCountry={highlightedCountry} 
                 initialCountry={initialCountry} 
                 hasGivenUp={hasGivenUp}
+                highlightedCountries={highlightedCountries}
                 bordersData={bordersData}
+                resetGame={resetFlag}
               />
           </div>
         </div>
@@ -195,7 +217,12 @@ console.log(initialCountry ? "answers  : " + bordersData[initialCountry.properti
           </div>
            <div className="row justify-content-center mt-4">
           <div className="col-md-6">
-            <button className="btn btn-warning" onClick={handleGiveUp}>I Give Up</button>
+            <Button 
+                className="btn btn-warning" 
+                onClick={handleGiveUp}>
+                I Give Up
+            </Button>
+
           </div>
         </div>
         </div>

@@ -16,9 +16,8 @@ function MapEffect({ initialCountry }) {
   return null;
 }
 
-function GeoMap({ dataUrl, highlightCountry, initialCountry, hasGivenUp, bordersData }) {
+function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedCountries, resetGame }) {
   const [countriesData, setCountriesData] = useState(null);
-  const [highlightedCountries, setHighlightedCountries] = useState([]);
 
   useEffect(() => {
     fetch(dataUrl)
@@ -29,23 +28,20 @@ function GeoMap({ dataUrl, highlightCountry, initialCountry, hasGivenUp, borders
       .catch(err => console.error(err));
   }, [dataUrl]);
 
-  useEffect(() => {
-    if (highlightCountry) {
-      setHighlightedCountries(prev => [...prev, highlightCountry]);
-    }
-  }, [highlightCountry]);
-
-const getStyle = (feature) => {
+  const getStyle = (feature) => {
   const featureNameLower = feature.properties.name.toLowerCase();
-    if (hasGivenUp && initialCountry && bordersData[initialCountry.properties.name].includes(feature.properties.name)) {
-       return { fillColor: 'blue', weight: 2, color: 'black', fillOpacity: 0.6 };
+  // Get correct answers based on the initialCountry
+  const correctAnswers = initialCountry ? bordersData[initialCountry.properties.name].map(name => name.toLowerCase()) : [];
+
+  if (hasGivenUp && correctAnswers.includes(featureNameLower)) {
+    return { fillColor: 'green', weight: 2, color: 'black', fillOpacity: 0.6 }; // Correct answers
   }
   if (highlightedCountries.includes(featureNameLower)) {
-    return { fillColor: 'blue', weight: 2, color: 'black', fillOpacity: 0.6 };
+    return { fillColor: 'blue', weight: 2, color: 'black', fillOpacity: 0.6 }; // User highlighted countries
   } else if (initialCountry && featureNameLower === initialCountry.properties.name.toLowerCase()) {
-    return { fillColor: 'pink', weight: 2, color: 'black', fillOpacity: 0.3 };
+    return { fillColor: 'pink', weight: 2, color: 'black', fillOpacity: 0.3 }; // Initial country
   }
-  return { fillColor: 'transparent', weight: 1, color: 'black', fillOpacity: 1 };
+  return { fillColor: 'transparent', weight: 1, color: 'black', fillOpacity: 1 }; // Default style
 };
 
   return (
@@ -53,7 +49,7 @@ const getStyle = (feature) => {
       {countriesData && (
         <GeoJSON data={countriesData} style={getStyle} />
       )}
-      {(initialCountry || highlightCountry) && (
+      {(initialCountry) && (
         <MapEffect initialCountry={initialCountry} />
       )}
     </MapContainer>
