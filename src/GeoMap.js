@@ -47,7 +47,7 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
 };
 
   return (
-    <MapContainer center={[51.505, -0.09]} zoom={2} style={{ height: '500px', width: '100%' }}>
+    <MapContainer center={[51.505, -0.09]} zoom={2} style={{ height: '350px', width: '100%' }}>
       {countriesData && (
         <GeoJSON data={countriesData} style={getStyle} />
       )}
