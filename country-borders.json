@@ -256,7 +256,6 @@
     ],
     "Cuba": [],
     "Cyprus": [
-        "Akrotiri and Dhekelia"
     ],
     "Czech Republic": [
         "Austria",
@@ -383,7 +382,8 @@
         "Liberia",
         "Mali",
         "Senegal",
-        "Sierra Leone"
+        "Sierra Leone",
+        "Guinea-Bissau"
     ],
     "Guinea-Bissau": [
         "Guinea",
@@ -401,9 +401,6 @@
         "Guatemala",
         "El Salvador",
         "Nicaragua"
-    ],
-    "Hong Kong[ae]": [
-        "People's Republic of China"
     ],
     "Hungary": [
         "Austria",
@@ -496,7 +493,7 @@
     "South Korea": [
         "North Korea"
     ],
-    "Kosovo[c]": [
+    "Kosovo": [
         "Albania",
         "Montenegro",
         "North Macedonia",
