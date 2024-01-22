@@ -16,7 +16,7 @@ function MapEffect({ initialCountry }) {
   return null;
 }
 
-function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedCountries, resetGame }) {
+function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedCountries, missedCountries, resetGame }) {
   const [countriesData, setCountriesData] = useState(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
   // Get correct answers based on the initialCountry
   const correctAnswers = initialCountry ? bordersData[initialCountry.properties.name].map(name => name.toLowerCase()) : [];
 
-  if (hasGivenUp && correctAnswers.includes(featureNameLower)) {
+  if (hasGivenUp && missedCountries.includes(featureNameLower)) {
     return { fillColor: 'red', weight: 2, color: 'black', fillOpacity: 0.6 }; // Correct answers
   }
   if (highlightedCountries.includes(featureNameLower)) {

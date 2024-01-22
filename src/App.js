@@ -10,7 +10,7 @@ function App() {
 
   const [highlightedCountry, setHighlightedCountry] = useState(null);
   const [highlightedCountries, setHighlightedCountries] = useState([]);
-  
+  const [missedCountries, setMissedCountries] = useState([]);
   const [initialCountry, setInitialCountry] = useState(null);
   const [showModal, setShowModal] = useState(true);
   const [showGiveUpModal, setShowGiveUpModal] = useState(false);
@@ -36,8 +36,10 @@ function App() {
     
     // Optional: Highlight the correct countries immediately
     // If bordersData for the initial country is an array of country names
-    const correctAnswers = bordersData[initialCountry.properties.name].map(name => name.toLowerCase());
-    setHighlightedCountries(correctAnswers);
+    const correctCountries = bordersData[initialCountry.properties.name].map(name => name.toLowerCase());
+
+    const missed = correctCountries.filter(country => !userInputs.includes(country));
+    setMissedCountries(missed);
   };
 
   const isValidCountry = (country) => {
@@ -50,10 +52,11 @@ function App() {
   };
 
   const resetGameState = () => {
+    setMissedCountries([]);
     setUserInputs([]);
     setShowGiveUpModal(false);
     setHighlightedCountry(null);
-    setHighlightedCountries([]); // Reset highlighted countries
+    setHighlightedCountries([]);
     setHasGivenUp(false);
     setResetFlag(true);
     setTimeout(() => setResetFlag(false), 100);
@@ -213,6 +216,7 @@ const countryNames = Object.keys(bordersData);
               <GeoMap 
                 dataUrl="/geogame-react/custom.geo.json" 
                 highlightCountry={highlightedCountry} 
+                missedCountries={missedCountries}
                 initialCountry={initialCountry} 
                 hasGivenUp={hasGivenUp}
                 highlightedCountries={highlightedCountries}
