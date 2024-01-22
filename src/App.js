@@ -66,15 +66,23 @@ function App() {
         .then(data => {
           if (data.features.length > 0) {
             let randomCountry;
+            let attempts=0;
+            const today = new Date();
+            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+            const pseudoRandom = new seedrandom(seed);
             do {
-                  const today = new Date();
-                  const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-                  const pseudoRandom = new seedrandom(seed);
-              randomCountry = data.features[Math.floor(pseudoRandom() * data.features.length)];
-              console.log(randomCountry);
-            } while (!isValidCountry(randomCountry));
-            setInitialCountry(randomCountry);
-          }
+                  const randomIndex = Math.floor(pseudoRandom() * data.features.length)
+                  randomCountry = data.features[randomIndex];
+                  attempts++;
+            } while (!isValidCountry(randomCountry) && attempts<50);
+            if (attempts >= 50) {
+              alert("Site under maintenance");
+              console.error("Failed to find a valid country after 50 attempts"); 
+              console.log('last attept random country = : ' +  randomCountry.properties.name);
+              // Handle failure to find a valid country (e.g., select a default country or show an error)
+            } else {
+              setInitialCountry(randomCountry);
+            }          }
         })
         .catch(err => console.error(err));
     }
@@ -165,7 +173,9 @@ const countryNames = Object.keys(bordersData);
           <Modal.Title>you tried</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p> The correct answers were: {initialCountry ? 
+          <p> The countries bordering {initialCountry ? 
+                    ` ${initialCountry.properties.name}` 
+                    : ' Loading...'} are: {initialCountry ? 
                     ` ${bordersData[initialCountry.properties.name]}` 
                     : ' Loading...'}</p>
           <p> The countries you guessed were: {userInputs ? 
