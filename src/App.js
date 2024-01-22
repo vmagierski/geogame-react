@@ -100,9 +100,13 @@ function App() {
 
   const handleCloseGiveUpModal = () => {
     setShowGiveUpModal(false);
-    startNewGame();
   }
   const handleCloseYouWinModal = () => {
+    setShowYouWinModal(false);
+  }
+
+  const handlePlayAgain = () => {
+    setShowGiveUpModal(false);
     setShowYouWinModal(false);
     startNewGame();
   }
@@ -187,7 +191,7 @@ const countryNames = Object.keys(bordersData);
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseGiveUpModal}>
+          <Button variant="primary" onClick={handlePlayAgain}>
             Play Again
           </Button>
         </Modal.Footer>
@@ -201,7 +205,7 @@ const countryNames = Object.keys(bordersData);
           <p> Yay! You Win!</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseYouWinModal}>
+          <Button variant="primary" onClick={handlePlayAgain}>
             Play Again
           </Button>
         </Modal.Footer>
