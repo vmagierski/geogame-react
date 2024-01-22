@@ -142,7 +142,7 @@
     ],
     "Burkina Faso": [
         "Benin",
-        "C\u00f4te d'Ivoire",
+        "Ivory Coast",
         "Ghana",
         "Mali",
         "Niger",
@@ -167,7 +167,7 @@
         "Nigeria"
     ],
     "Canada": [
-        "United States",
+        "United States of America",
         "Greenland",
         "Saint Pierre and Miquelon"
     ],
@@ -240,7 +240,7 @@
         "Nicaragua",
         "Panama"
     ],
-    "C\u00f4te d'Ivoire": [
+    "Ivory Coast": [
         "Burkina Faso",
         "Ghana",
         "Guinea",
@@ -362,7 +362,7 @@
     ],
     "Ghana": [
         "Burkina Faso",
-        "C\u00f4te d'Ivoire",
+        "Ivory Coast",
         "Togo"
     ],
     "Greece": [
@@ -379,7 +379,7 @@
         "Mexico"
     ],
     "Guinea": [
-        "C\u00f4te d'Ivoire",
+        "Ivory Coast",
         "Liberia",
         "Mali",
         "Senegal",
@@ -534,7 +534,7 @@
     ],
     "Liberia": [
         "Guinea",
-        "C\u00f4te d'Ivoire",
+        "Ivory Coast",
         "Sierra Leone"
     ],
     "Libya": [
@@ -560,11 +560,7 @@
         "France",
         "Germany"
     ],
-    "Macau[aj](People's Republic of China)": [
-        "People's Republic of China"
-    ],
     "Madagascar": [],
-    "Madeira[ak](Portugal)": [],
     "Malawi": [
         "Mozambique",
         "Tanzania",
@@ -579,7 +575,7 @@
     "Mali": [
         "Algeria",
         "Burkina Faso",
-        "C\u00f4te d'Ivoire",
+        "Ivory Coast",
         "Guinea",
         "Mauritania",
         "Niger",
@@ -597,7 +593,7 @@
     "Mexico": [
         "Belize",
         "Guatemala",
-        "United States"
+        "United States of America"
     ],
     "Federated States of Micronesia": [],
     "Moldova": [
@@ -778,7 +774,8 @@
     ],
     "S\u00e3o Tom\u00e9 and Pr\u00edncipe": [],
     "Saudi Arabia": [
-        "Bahrain Iraq",
+        "Bahrain",
+        "Iraq",
         "Jordan",
         "Kuwait",
         "Oman",
@@ -961,7 +958,7 @@
     "United Kingdom": [
         "Ireland" 
     ],
-    "United States": [
+    "United States of America": [
         "Canada",
         "Mexico"
     ],
