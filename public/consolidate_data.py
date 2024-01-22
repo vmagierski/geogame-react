@@ -37,7 +37,6 @@ for c in geojson_data['features']:
 
 
 keynotinlist=[]
-print('----------------------')
 for c in country_border_data.keys():
     if c not in countrynameslist:
         keynotinlist.append(c)
@@ -50,12 +49,18 @@ for bordering_all in country_border_data.values():
         if c not in countrynameslist:
             borderingcountries_valueslist.append(c)
 
-print('----------------------')
 valuesnotingeojson = list(set(borderingcountries_valueslist))
-
+print('--------current_geojson_country_name not in border keys:--------------')
 print('\n'.join(f'current_geojson_country_name not in border keys: {i}' for i in sorted(geojson_country_name_not_in_border_keys)))
+print('-------------------------')
+
+print('---------country_name not in big list-------------')
 print('\n'.join(f'country_name not in big list: {i}' for i in sorted(keynotinlist)))
+print('----------------------')
+
+print('------bordering-countries value not in big list----------------')
 print('\n'.join(f'bordering-countries value not in big list: {i}' for i in sorted(valuesnotingeojson)))
+print('----------------------')
 
 print('done')
 exit(0)
