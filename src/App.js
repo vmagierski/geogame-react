@@ -38,14 +38,16 @@ function App() {
     
     // Optional: Highlight the correct countries immediately
     // If bordersData for the initial country is an array of country names
-    const correctCountries = bordersData[initialCountry.properties.name].map(name => name.toLowerCase());
+    const correctCountries = bordersData[initialCountry.properties.ADMIN].map(name => name.toLowerCase());
 
     const missed = correctCountries.filter(country => !userInputs.includes(country));
     setMissedCountries(missed);
   };
 
   const isValidCountry = (country) => {
-    return bordersData[country.properties.name] && bordersData[country.properties.name].length !== 0;
+    console.log('checking if valid country2: ')
+    console.log('contry.properties.NAME' + JSON.stringify(country.properties.ADMIN))
+    return bordersData[country.properties.ADMIN] && bordersData[country.properties.ADMIN].length !== 0;
   };
 
   const startNewGame = () => {
@@ -67,7 +69,7 @@ function App() {
 
   const selectRandomCountry = () => {
     if (Object.keys(bordersData).length > 0) {
-      fetch('/geogame-react/custom.geo.json')
+      fetch('/geogame-react/COUNTRIESJSON.json.geojson')
         .then(res => res.json())
         .then(data => {
           if (data.features.length > 0) {
@@ -84,9 +86,10 @@ function App() {
             if (attempts >= 50) {
               alert("Site under maintenance");
               console.error("Failed to find a valid country after 50 attempts"); 
-              console.log('last attept random country = : ' +  randomCountry.properties.name);
+              console.log('last attept random country = : ' +  randomCountry.properties.NAME);
               // Handle failure to find a valid country (e.g., select a default country or show an error)
             } else {
+              console.log('found valid country: ' + JSON.stringify(randomCountry.properties.NAME))
               setInitialCountry(randomCountry);
             }          }
         })
@@ -130,8 +133,8 @@ const handleKeyPress = (event) => {
   if (event.key === 'Enter') {
     const inputCountry = inputValue.trim().toLowerCase();
 
-    if (initialCountry && bordersData[initialCountry.properties.name]) {
-      const borderCountries = bordersData[initialCountry.properties.name].map(country => country.toLowerCase());
+    if (initialCountry && bordersData[initialCountry.properties.ADMIN]) {
+      const borderCountries = bordersData[initialCountry.properties.ADMIN].map(country => country.toLowerCase());
       console.log("Input Country:", inputCountry);
 
     if (borderCountries.includes(inputCountry)) {
@@ -164,7 +167,7 @@ const countryNames = Object.keys(bordersData);
 const handleShare = () => {
   //✅❌
   // ToDo also need to clean this to not have to recompute, since we do it elsewhere in the code
-  const correctCountries = bordersData[initialCountry.properties.name].map(name => name.toLowerCase());
+  const correctCountries = bordersData[initialCountry.properties.ADMIN].map(name => name.toLowerCase());
   const missed = correctCountries.filter(country => !userInputs.includes(country));
   const score = "✅".repeat(userInputs.length) + "❌".repeat(missed.length)
   console.log(score);
@@ -183,7 +186,7 @@ const handleShare = () => {
         </Modal.Header>
         <Modal.Body>
           <p>Can you list the countries that share borders with {initialCountry ? 
-                    ` ${initialCountry.properties.name}?` 
+                    ` ${initialCountry.properties.ADMIN}?` 
                     : ' Loading...'}</p>
         </Modal.Body>
         <Modal.Footer>
@@ -199,9 +202,9 @@ const handleShare = () => {
         </Modal.Header>
         <Modal.Body>
           <p> The countries bordering {initialCountry ? 
-                    ` ${initialCountry.properties.name}` 
+                    ` ${initialCountry.properties.ADMIN}` 
                     : ' Loading...'} are: {initialCountry ? 
-                    ` ${bordersData[initialCountry.properties.name]}` 
+                    ` ${bordersData[initialCountry.properties.ADMIN]}` 
                     : ' Loading...'}</p>
           <p> The countries you guessed were: {userInputs ? 
               ` ${userInputs}` 
@@ -234,7 +237,7 @@ const handleShare = () => {
     </div> 
 
       <h1 className="text-center my-4">The Bordering Countries Quiz</h1>
-      <h4> Which countries border {initialCountry ? initialCountry.properties.name : ' Loading'} ?</h4>
+      <h4> Which countries border {initialCountry ? initialCountry.properties.ADMIN : ' Loading'} ?</h4>
 
       <div className="container">
         <div className="row justify-content-center">
