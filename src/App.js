@@ -20,6 +20,7 @@ function App() {
   const [bordersData, setBordersData] = useState({});
   const [userInputs, setUserInputs] = useState([]);
   const [hasGivenUp, setHasGivenUp] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
   const [error, setError] = useState('');
   const [resetFlag, setResetFlag] = useState(false);
   
@@ -38,8 +39,7 @@ function App() {
     
     // Optional: Highlight the correct countries immediately
     // If bordersData for the initial country is an array of country names
-    const correctCountries = bordersData[initialCountry.properties.ADMIN].map(name => name.toLowerCase());
-
+    const correctCountries = bordersData[initialCountry.properties.ADMIN];
     const missed = correctCountries.filter(country => !userInputs.includes(country));
     setMissedCountries(missed);
   };
@@ -62,6 +62,7 @@ function App() {
     setHighlightedCountry(null);
     setHighlightedCountries([]);
     setHasGivenUp(false);
+    setHasWon(false);
     setResetFlag(true);
     setShareResults(false);// better way of this?
     setTimeout(() => setResetFlag(false), 100); // might not need this?
@@ -76,7 +77,7 @@ function App() {
             let randomCountry;
             let attempts=0;
             const today = new Date();
-            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1+2) * 100 + today.getDate();
+            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
             const pseudoRandom = new seedrandom(seed);
             do {
                   const randomIndex = Math.floor(pseudoRandom() * data.features.length)
@@ -131,10 +132,10 @@ function App() {
 
 const handleKeyPress = (event) => {
   if (event.key === 'Enter') {
-    const inputCountry = inputValue.trim().toLowerCase();
+    const inputCountry = inputValue.trim();
 
     if (initialCountry && bordersData[initialCountry.properties.ADMIN]) {
-      const borderCountries = bordersData[initialCountry.properties.ADMIN].map(country => country.toLowerCase());
+      const borderCountries = bordersData[initialCountry.properties.ADMIN];
       console.log("Input Country:", inputCountry);
 
     if (borderCountries.includes(inputCountry)) {
@@ -146,6 +147,7 @@ const handleKeyPress = (event) => {
             if (updatedInputs.size === borderCountries.length) {
               // User has input all bordering countries
               setShowYouWinModal(true);
+              setHasWon(true);
             }
             return [...updatedInputs];
           });
@@ -167,7 +169,7 @@ const countryNames = Object.keys(bordersData);
 const handleShare = () => {
   //✅❌
   // ToDo also need to clean this to not have to recompute, since we do it elsewhere in the code
-  const correctCountries = bordersData[initialCountry.properties.ADMIN].map(name => name.toLowerCase());
+  const correctCountries = bordersData[initialCountry.properties.ADMIN];
   const missed = correctCountries.filter(country => !userInputs.includes(country));
   const score = "✅".repeat(userInputs.length) + "❌".repeat(missed.length)
   console.log(score);
@@ -201,13 +203,16 @@ const handleShare = () => {
           <Modal.Title>you tried</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p> The countries bordering {initialCountry ? 
+          <p className="text-center my-4"> The countries bordering {initialCountry ? 
                     ` ${initialCountry.properties.ADMIN}` 
                     : ' Loading...'} are: {initialCountry ? 
                     ` ${bordersData[initialCountry.properties.ADMIN]}` 
                     : ' Loading...'}</p>
-          <p> The countries you guessed were: {userInputs ? 
+          <p className="text-center my-4"> The countries you guessed were: {userInputs ? 
               ` ${userInputs}` 
+              : ' Loading...'}</p>
+              <p className="text-center my-4"> The countries you missed were: {missedCountries ? 
+              ` ${missedCountries}` 
               : ' Loading...'}</p>
 
         </Modal.Body>
@@ -248,6 +253,7 @@ const handleShare = () => {
                 missedCountries={missedCountries}
                 initialCountry={initialCountry} 
                 hasGivenUp={hasGivenUp}
+                hasWon={hasWon}
                 highlightedCountries={highlightedCountries}
                 bordersData={bordersData}
                 resetGame={resetFlag}

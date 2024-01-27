@@ -16,7 +16,7 @@ function MapEffect({ initialCountry }) {
   return null;
 }
 
-function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedCountries, missedCountries, resetGame }) {
+function GeoMap({ dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, highlightedCountries, missedCountries, resetGame }) {
   const [countriesData, setCountriesData] = useState(null);
 
   useEffect(() => {
@@ -29,21 +29,21 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
   }, [dataUrl]);
 
   const getStyle = (feature) => {
-    //TODO fix this name_en thing. should probably just be .name on a consolidated list of data once the geojson 
-    //dataset matches the bordering countries
-  const featureNameLower = feature.properties.ADMIN.toLowerCase();
+  const featureNameLower = feature.properties.ADMIN;
   // Get correct answers based on the initialCountry
-  const correctAnswers = initialCountry ? bordersData[initialCountry.properties.ADMIN].map(name => name.toLowerCase()) : [];
+  const correctAnswers = initialCountry ? bordersData[initialCountry.properties.ADMIN] : [];
 
   if (hasGivenUp && missedCountries.includes(featureNameLower)) {
     return { fillColor: 'red', weight: 2, color: 'black', fillOpacity: 0.6 }; // Correct answers
   }
   if (highlightedCountries.includes(featureNameLower)) {
     return { fillColor: 'green', weight: 2, color: 'black', fillOpacity: 0.6 }; // User highlighted countries
-  } else if (initialCountry && featureNameLower === initialCountry.properties.ADMIN.toLowerCase()) {
+  } else if (initialCountry && featureNameLower === initialCountry.properties.ADMIN) {
     return { fillColor: 'blue', weight: 2, color: 'black', fillOpacity: 0.6 }; // Initial country
+  } else if (hasWon || hasGivenUp){
+      return { fillColor: 'gray', weight: 1, color: 'black', fillOpacity: .3 };
   }
-  return { fillColor: 'transparent', weight: 0, color: 'black', fillOpacity: 0 }; // Default style
+  return { fillColor: 'gray', weight: 0, color: 'black', fillOpacity: 0 }; // Default style (don't show the country, set weight and opacity to 0)
 };
 
   return (
