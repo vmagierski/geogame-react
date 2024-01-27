@@ -1,7 +1,8 @@
 import json
 
 geojson_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/custom.geo.json'
-country_borders_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/country-borders.json'
+#country_borders_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/country-borders.json'
+country_borders_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/all_border_data.json'
 #NEW_geojson_filepath='/Users/VM/chatgpt-geo-3/frontend/public/output.geojson'
 
 
@@ -30,7 +31,7 @@ for c in geojson_data['features']:
         print('printing name_en instead')
         print(c['properties']['name_en'])
     else:
-        current_geojson_country_name = c['properties']['name_en']
+        current_geojson_country_name = c['properties']['name']
         countrynameslist.append(current_geojson_country_name)
         if current_geojson_country_name not in country_border_data.keys():
             geojson_country_name_not_in_border_keys.append(current_geojson_country_name)

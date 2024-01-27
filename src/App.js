@@ -11,8 +11,10 @@ function App() {
   const [highlightedCountry, setHighlightedCountry] = useState(null);
   const [highlightedCountries, setHighlightedCountries] = useState([]);
   const [missedCountries, setMissedCountries] = useState([]);
+  const [buttonText, setButtonText] = useState("Share Results");
   const [initialCountry, setInitialCountry] = useState(null);
   const [showModal, setShowModal] = useState(true);
+  const [shareResults, setShareResults] = useState(false);
   const [showGiveUpModal, setShowGiveUpModal] = useState(false);
   const [showYouWinModal, setShowYouWinModal] = useState(false);
   const [bordersData, setBordersData] = useState({});
@@ -24,7 +26,7 @@ function App() {
 
   useEffect(() => fetchBordersData(), []);
   const fetchBordersData = () => {
-    fetch('/geogame-react/country-borders.json')
+    fetch('/geogame-react/all_border_data.json')
       .then(res => res.json())
       .then(data => setBordersData(data))
       .catch(err => console.error('Error loading borders data:', err));
@@ -59,7 +61,8 @@ function App() {
     setHighlightedCountries([]);
     setHasGivenUp(false);
     setResetFlag(true);
-    setTimeout(() => setResetFlag(false), 100);
+    setShareResults(false);// better way of this?
+    setTimeout(() => setResetFlag(false), 100); // might not need this?
   };
 
   const selectRandomCountry = () => {
@@ -107,6 +110,7 @@ function App() {
 
   const handlePlayAgain = () => {
     setShowGiveUpModal(false);
+    setButtonText("Share Results");
     setShowYouWinModal(false);
     startNewGame();
   }
@@ -157,8 +161,22 @@ const handleKeyPress = (event) => {
 
 const countryNames = Object.keys(bordersData);
 
+const handleShare = () => {
+  //✅❌
+  // ToDo also need to clean this to not have to recompute, since we do it elsewhere in the code
+  const correctCountries = bordersData[initialCountry.properties.name].map(name => name.toLowerCase());
+  const missed = correctCountries.filter(country => !userInputs.includes(country));
+  const score = "✅".repeat(userInputs.length) + "❌".repeat(missed.length)
+  console.log(score);
+  navigator.clipboard.writeText(score + '\nhttps://vmagierski.github.io/geogame-react/');
+  setShareResults(true);
+  setButtonText("Copied To Clipboard");
+}
+
   return (
     <div className="App bg-texture">
+    <div className="row justify-content-center mt-4">
+
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Country Borders Game!</Modal.Title>
@@ -194,6 +212,7 @@ const countryNames = Object.keys(bordersData);
           <Button variant="primary" onClick={handlePlayAgain}>
             Play Again
           </Button>
+          <Button variant="secondary" onClick={handleShare}> {buttonText} </Button>
         </Modal.Footer>
       </Modal>
 
@@ -202,14 +221,17 @@ const countryNames = Object.keys(bordersData);
           <Modal.Title>Well Done!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p> Yay! You Win!</p>
+          <p> Yay! You Win!</p> 
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handlePlayAgain}>
             Play Again
           </Button>
+          <Button variant="secondary" onClick={handleShare}> Share Results </Button>
+
         </Modal.Footer>
       </Modal>
+    </div> 
 
       <h1 className="text-center my-4">The Bordering Countries Quiz</h1>
       <h4> Which countries border {initialCountry ? initialCountry.properties.name : ' Loading'} ?</h4>
@@ -218,7 +240,7 @@ const countryNames = Object.keys(bordersData);
         <div className="row justify-content-center">
           <div className="col-lg-8">
               <GeoMap 
-                dataUrl="/geogame-react/custom.geo.json" 
+                dataUrl="/geogame-react/COUNTRIESJSON.json.geojson" 
                 highlightCountry={highlightedCountry} 
                 missedCountries={missedCountries}
                 initialCountry={initialCountry} 
@@ -236,6 +258,7 @@ const countryNames = Object.keys(bordersData);
               type="text"
               className={`form-control mb-4 ${error ? 'is-invalid' : ''}`}
               value={inputValue}
+              disabled={hasGivenUp}
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
               placeholder="Type in a country..."
@@ -246,19 +269,26 @@ const countryNames = Object.keys(bordersData);
                 <option key={index} value={name} />
               ))}
             </datalist>
-            <Button variant="primary" onClick={handleSubmit} className="mt-2">Submit</Button>
+            
 
           </div>
-           <div className="row justify-content-center mt-4">
+
+      <div className="row justify-content-center mt-4">
+        <div className="col-md-6">
+          <Button variant="primary" onClick={handleSubmit} className="mt-2">Submit</Button>
+        </div>
+      </div>
+
+         <div className="row justify-content-center mt-4">
           <div className="col-md-6">
-            <Button 
+            <Button className="mt-2"
                 className="btn btn-warning" 
                 onClick={handleGiveUp}>
                 I Give Up
             </Button>
-
           </div>
         </div>
+
         </div>
       </div>
     </div>

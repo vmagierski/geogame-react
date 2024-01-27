@@ -31,7 +31,7 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
   const getStyle = (feature) => {
     //TODO fix this name_en thing. should probably just be .name on a consolidated list of data once the geojson 
     //dataset matches the bordering countries
-  const featureNameLower = feature.properties.name_en.toLowerCase();
+  const featureNameLower = feature.properties.NAME_EN.toLowerCase();
   // Get correct answers based on the initialCountry
   const correctAnswers = initialCountry ? bordersData[initialCountry.properties.name].map(name => name.toLowerCase()) : [];
 
@@ -48,12 +48,16 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
 
   return (
     <MapContainer center={[51.505, -0.09]} zoom={2} style={{ height: '350px', width: '100%' }}>
-      {countriesData && (
+      {
+        countriesData && (
         <GeoJSON data={countriesData} style={getStyle} />
-      )}
-      {(initialCountry) && (
+      )
+      }
+      {
+        (initialCountry) && (
         <MapEffect initialCountry={initialCountry} />
-      )}
+      )
+      }
     </MapContainer>
   );
 }

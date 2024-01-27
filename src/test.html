@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <style>
+        #map { 
+            height: 400px; 
+            width: 600px; 
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+    // Initialize the map
+    var map = L.map('map').setView([51.505, -0.09], 4); // You can adjust the center and zoom level
+
+    // Add OpenStreetMap tile layer to the map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Load GeoJSON from an external file
+    fetch('ne_10m_admin_0_countries.json')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            // Add GeoJSON layer to the map
+            L.geoJson(data).addTo(map);
+        });
+</script>
+
+</body>
+</html>
