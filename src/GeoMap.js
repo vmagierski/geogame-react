@@ -43,7 +43,7 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, bordersData, highlightedC
   } else if (initialCountry && featureNameLower === initialCountry.properties.name.toLowerCase()) {
     return { fillColor: 'blue', weight: 2, color: 'black', fillOpacity: 0.6 }; // Initial country
   }
-  return { fillColor: 'transparent', weight: 1, color: 'black', fillOpacity: 1 }; // Default style
+  return { fillColor: 'transparent', weight: 0, color: 'black', fillOpacity: 0 }; // Default style
 };
 
   return (
