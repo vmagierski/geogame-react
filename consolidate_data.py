@@ -1,6 +1,7 @@
 import json
 
-geojson_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/custom.geo.json'
+#geojson_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/custom.geo.json'
+geojson_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/COUNTRIESJSON.json.geojson'
 #country_borders_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/country-borders.json'
 country_borders_filepath = '/Users/VM/chatgpt-geo-3/frontend/public/all_border_data.json'
 #NEW_geojson_filepath='/Users/VM/chatgpt-geo-3/frontend/public/output.geojson'
@@ -26,12 +27,12 @@ countrynameslist=[]
 geojson_country_name_not_in_border_keys = []
 
 for c in geojson_data['features']:
-    if c['properties']['name'] is None:
-        print('country has no name attribute')
+    if c['properties']['ADMIN'] is None:
+        print('country has no ADMIN attribute')
         print('printing name_en instead')
-        print(c['properties']['name_en'])
+        print(c['properties']['NAME_EN'])
     else:
-        current_geojson_country_name = c['properties']['name']
+        current_geojson_country_name = c['properties']['ADMIN']
         countrynameslist.append(current_geojson_country_name)
         if current_geojson_country_name not in country_border_data.keys():
             geojson_country_name_not_in_border_keys.append(current_geojson_country_name)
