@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
 import GeoMap from './GeoMap';
 import seedrandom from 'seedrandom';
+import StartModal from './Components/StartModal';
 import './App.css';
 
 function App() {
@@ -100,7 +101,7 @@ function App() {
             let randomCountry;
             let attempts=0;
             const today = new Date();
-            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate()+1;
+            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
             const pseudoRandom = new seedrandom(seed);
             do {
                   const randomIndex = Math.floor(pseudoRandom() * data.features.length)
@@ -213,21 +214,11 @@ const handleShare = () => {
     <div className="App bg-texture">
     <div className="row justify-content-center mt-4">
 
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Country Borders Game!</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Can you list the countries that share borders with {initialCountry ? 
-                    ` ${initialCountry.properties.ADMIN}?` 
-                    : ' Loading...'}</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Start Playing
-          </Button>
-        </Modal.Footer>
-      </Modal>
+     <StartModal 
+        showModal={showModal}
+        handleCloseModal={handleCloseModal}
+        initialCountry={initialCountry}
+      />
 
       <Modal show={showGiveUpModal} onHide={handleCloseGiveUpModal}>
         <Modal.Header closeButton>
@@ -293,23 +284,7 @@ const handleShare = () => {
         </div>
         <div className="row justify-content-center mt-4">
           <div className="col-md-6">
-{/*            <input
-              list="countries"
-              type="text"
-              className={`form-control mb-4 ${error ? 'is-invalid' : ''}`}
-              value={inputValue}
-              disabled={hasGivenUp}
-              onChange={handleInputChange}
-              onKeyPress={handleKeyPress}
-              placeholder="Type in a country..."
-            />
 
-            <datalist id="countries">
-              {countryNames.map((name, index) => (
-                <option key={index} value={name} />
-              ))}
-            </datalist>
-*/}            
              <Typeahead
               id="user-input-field"
               className={`form-control mb-4 ${error ? 'is-invalid' : ''}`}
