@@ -3,29 +3,32 @@
 }
 
 /* App.css */
-.App {
-  background-color: #f0f4f7;
+.App, HTML {
+  background-color: hsl(210, 15%, 22%);
   min-height: 100%;
-
+  font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 h1 {
-  color: #007bff; /* Bootstrap primary color for the heading */
+  color: hsl(210, 50%, 60%)
+}
+
+body {
+  color: hsl(0, 0%, 97%)
 }
 
 .modal-header, .modal-footer {
-  background-color: #007bff; /* Bootstrap primary color for modal header and footer */
+  background-color: hsl(210, 15%, 22%);
   color: white;
 }
 
 .modal-body {
-  background-color: #e9ecef; /* Lighter shade for modal body */;
+  background-color: hsl(210, 15%, 22%);
 }
 
 .form-control {
-  border: 2px solid #007bff; /* Add border to input */
+  border: 0px solid #007bff; /* Add border to input */
 }
-
 
 .App-logo {
   height: 40vmin;
@@ -39,7 +42,7 @@ h1 {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #084C61;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +53,7 @@ h1 {
 }
 
 .App-link {
-  color: #61dafb;
+  color: #323031;
 }
 
 .country-label {

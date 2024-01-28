@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Typeahead } from 'react-bootstrap-typeahead';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
 import GeoMap from './GeoMap';
@@ -23,6 +24,10 @@ function App() {
   const [hasWon, setHasWon] = useState(false);
   const [error, setError] = useState('');
   const [resetFlag, setResetFlag] = useState(false);
+
+  const [selected, setSelected] = useState([]);
+  const typeaheadRef = useRef(null); // Create a reference
+
   
 
   useEffect(() => fetchBordersData(), []);
@@ -52,7 +57,9 @@ function App() {
 
   const startNewGame = () => {
     resetGameState();
-    selectRandomCountry();
+    selectPseudoRandomCountry();
+//    selectRandomCountryNoValidCheck();
+//    setInitialCountry();
   };
 
   const resetGameState = () => {
@@ -68,7 +75,23 @@ function App() {
     setTimeout(() => setResetFlag(false), 100); // might not need this?
   };
 
-  const selectRandomCountry = () => {
+  const selectRandomCountryNoValidCheck= () => {
+    if (Object.keys(bordersData).length > 0) {
+      fetch('/geogame-react/COUNTRIESJSON.json.geojson')
+       .then(res => res.json())
+       .then(data => {
+       if (data.features.length > 0) {
+        let randomCountry;
+        const randomIndex = Math.floor(Math.random() * data.features.length)
+        randomCountry = data.features[randomIndex];
+        setInitialCountry(randomCountry);
+    
+    }})
+    .catch(err => console.error(err));
+    }
+  };
+
+  const selectPseudoRandomCountry = () => {
     if (Object.keys(bordersData).length > 0) {
       fetch('/geogame-react/COUNTRIESJSON.json.geojson')
         .then(res => res.json())
@@ -77,7 +100,7 @@ function App() {
             let randomCountry;
             let attempts=0;
             const today = new Date();
-            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+            const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate()+1;
             const pseudoRandom = new seedrandom(seed);
             do {
                   const randomIndex = Math.floor(pseudoRandom() * data.features.length)
@@ -128,11 +151,15 @@ function App() {
     setInputValue(event.target.value);
   };
 
+  const handleNewChange = (event) => {
+    console.log(event.selected);
+  }
+
 
 
 const handleKeyPress = (event) => {
-  if (event.key === 'Enter') {
-    const inputCountry = inputValue.trim();
+  if (event.key === 'Enter' && selected.length > 0) {
+    const inputCountry = selected[0].trim();
 
     if (initialCountry && bordersData[initialCountry.properties.ADMIN]) {
       const borderCountries = bordersData[initialCountry.properties.ADMIN];
@@ -161,6 +188,10 @@ const handleKeyPress = (event) => {
       setError('Initial country data is still loading...');
     }
     setInputValue('');
+    if (typeaheadRef.current) {
+        typeaheadRef.current.clear();
+    }
+    setSelected('');
   }
 };
 
@@ -177,7 +208,7 @@ const handleShare = () => {
   setShareResults(true);
   setButtonText("Copied To Clipboard");
 }
-
+  //todo so lazy, should be doing component rendering here
   return (
     <div className="App bg-texture">
     <div className="row justify-content-center mt-4">
@@ -192,7 +223,7 @@ const handleShare = () => {
                     : ' Loading...'}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={handleCloseModal}>
             Start Playing
           </Button>
         </Modal.Footer>
@@ -200,7 +231,7 @@ const handleShare = () => {
 
       <Modal show={showGiveUpModal} onHide={handleCloseGiveUpModal}>
         <Modal.Header closeButton>
-          <Modal.Title>you tried</Modal.Title>
+          <Modal.Title>:(</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p className="text-center my-4"> The countries bordering {initialCountry ? 
@@ -240,11 +271,11 @@ const handleShare = () => {
         </Modal.Footer>
       </Modal>
     </div> 
+      <div className="container">
 
       <h1 className="text-center my-4">The Bordering Countries Quiz</h1>
       <h4> Which countries border {initialCountry ? initialCountry.properties.ADMIN : ' Loading'} ?</h4>
 
-      <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">
               <GeoMap 
@@ -262,7 +293,7 @@ const handleShare = () => {
         </div>
         <div className="row justify-content-center mt-4">
           <div className="col-md-6">
-            <input
+{/*            <input
               list="countries"
               type="text"
               className={`form-control mb-4 ${error ? 'is-invalid' : ''}`}
@@ -272,31 +303,35 @@ const handleShare = () => {
               onKeyPress={handleKeyPress}
               placeholder="Type in a country..."
             />
-        {error && <div className="invalid-feedback">{error}</div>}
+
             <datalist id="countries">
               {countryNames.map((name, index) => (
                 <option key={index} value={name} />
               ))}
             </datalist>
-            
+*/}            
+             <Typeahead
+              id="user-input-field"
+              className={`form-control mb-4 ${error ? 'is-invalid' : ''}`}
+              onChange={setSelected}
+              options={countryNames}
+              disabled={hasGivenUp||hasWon}
+              onKeyDown={handleKeyPress}
+              placeholder="Type in a country..."
+              selected={selected}
+              ref={typeaheadRef}
+            />
+            {error && <div className="invalid-feedback">{error}</div>}
+
 
           </div>
 
-      <div className="row justify-content-center mt-4">
-        <div className="col-md-6">
-          <Button variant="primary" onClick={handleSubmit} className="mt-2">Submit</Button>
+      <div className="row justify-content-center mb-3">
+        <div className="col-md-3 d-grid gap-3">
+          <Button variant="primary" onClick={handleSubmit} className="btn-block">Submit</Button>
+          <Button variant="warning" onClick={handleGiveUp} className="btn-block">I Give Up</Button>
         </div>
       </div>
-
-         <div className="row justify-content-center mt-4">
-          <div className="col-md-6">
-            <Button className="mt-2"
-                className="btn btn-warning" 
-                onClick={handleGiveUp}>
-                I Give Up
-            </Button>
-          </div>
-        </div>
 
         </div>
       </div>
