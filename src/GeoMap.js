@@ -10,14 +10,37 @@ function MapEffect({ initialCountry }) {
     if (initialCountry) {
       const bounds = L.geoJSON(initialCountry.geometry).getBounds();
       map.fitBounds(bounds, { maxZoom: 5 }); // Adjusted maxZoom for initial zoom out
+  
+    // console.log('haswon: ' + hasWon);
+    // console.log('hasGivenUp: ' + hasGivenUp);
+
+    // if ((hasWon || hasGivenUp) && feature.properties && feature.properties.ADMIN) {
+    //   const tooltipContent = feature.properties.ADMIN;
+    //   console.log('tooltipContent: ' + tooltipContent);
+    //   layer.bindPopup(tooltipContent);
+    // }
+    // function onMapClick(e) {
+    //     var popup = L.popup();
+
+    //     popup
+    //         .setLatLng(e.latlng)
+    //         .setContent("You clicked the map at " + e.latlng.toString() + " initialcountry : " + initialCountry.properties.ADMIN)
+    //         .openOn(map);
+    // }
+
+    // map.on('click', onMapClick);
+
     }
   }, [map, initialCountry]);
+
 
   return null;
 }
 
 function GeoMap({ dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, highlightedCountries, missedCountries, resetGame }) {
   const [countriesData, setCountriesData] = useState(null);
+    const [isGameOver, setIsGameOver] = useState(false); // Key for GeoJSON component
+
 
   useEffect(() => {
     fetch(dataUrl)
@@ -28,15 +51,17 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, high
       .catch(err => console.error(err));
   }, [dataUrl]);
 
-/**
+  useEffect(() => {
+    setIsGameOver(hasGivenUp || hasWon);
+  }, [hasGivenUp, hasWon]);
+
   const onEachFeature = (feature, layer) => {
-    if ((hasWon || hasGivenUp) && feature.properties && feature.properties.ADMIN) {
-      const tooltipContent = feature.properties.ADMIN; // Assuming 'ADMIN' is the property name
-      console.log('tooltipContent: ' + tooltipContent);
-      layer.bindTooltip(tooltipContent);
+    console.log("hasWON: " + hasWon);
+    console.log("hasGivenUp: " + hasGivenUp);
+    if (isGameOver){
+      layer.bindPopup(feature.properties.ADMIN);
     }
   };
-*/
 
   const getStyle = (feature) => {
   const featureNameLower = feature.properties.ADMIN;
@@ -58,13 +83,9 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, high
 
   return (
     <MapContainer center={[51.505, -0.09]} zoom={2} style={{ height: '300px', width: '100%' }}>
-      {
-        countriesData && (<GeoJSON data={countriesData} style={getStyle}
-/>)
-      }
-      {
-        (initialCountry) && (<MapEffect initialCountry={initialCountry} />)
-      }
+
+      { countriesData && (<GeoJSON key={isGameOver} data={countriesData} style={getStyle} onEachFeature={onEachFeature}/>) }
+      { (initialCountry) && (<MapEffect initialCountry={initialCountry} />) }
     </MapContainer>
   );
 }

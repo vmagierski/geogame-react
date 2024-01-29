@@ -59,13 +59,14 @@ function App() {
   const startNewGame = () => {
     resetGameState();
     selectPseudoRandomCountry();
-//    selectRandomCountryNoValidCheck();
+   // selectRandomCountryNoValidCheck();
 //    setInitialCountry();
   };
 
   const resetGameState = () => {
     setMissedCountries([]);
     setUserInputs([]);
+    setError('');
     setShowGiveUpModal(false);
     setHighlightedCountry(null);
     setHighlightedCountries([]);
@@ -159,19 +160,19 @@ function App() {
 
 
 const handleKeyPress = (event) => {
-  if (event.key === 'Enter' && selected.length > 0) {
-    const inputCountry = selected[0].trim();
+  if (event.key === 'Enter' ) {
+    const inputCountry = selected.length > 0 ? selected[0] : (event.target ? event.target.value : "");
 
     if (initialCountry && bordersData[initialCountry.properties.ADMIN]) {
       const borderCountries = bordersData[initialCountry.properties.ADMIN];
-      console.log("Input Country:", inputCountry);
+      // console.log("Input Country:", inputCountry);
 
     if (borderCountries.includes(inputCountry)) {
-      console.log("Setting highlighted country:", inputCountry);
+      // console.log("Setting highlighted country:", inputCountry);
       setHighlightedCountries(prevCountries => [...prevCountries, inputCountry]); // Add to highlighted countries
           setUserInputs(prevInputs => {
             const updatedInputs = new Set([...prevInputs, inputCountry]);
-            console.log("updatedInputs (i.e. countries the user has already typed):", [...updatedInputs]);
+            // console.log("updatedInputs (i.e. countries the user has already typed):", [...updatedInputs]);
             if (updatedInputs.size === borderCountries.length) {
               // User has input all bordering countries
               setShowYouWinModal(true);
@@ -181,8 +182,8 @@ const handleKeyPress = (event) => {
           });
           setError('');
         } else {
-          console.log("Error: Country does not border.");
-         setError('This country does not border the initially selected country.');
+          // console.log("Error: Country does not border.");
+           setError('This country does not border the initially selected country.');
        }
     } else {
       console.log("Error: Initial country data still loading.");
@@ -220,7 +221,7 @@ const handleShare = () => {
         initialCountry={initialCountry}
       />
 
-      <Modal show={showGiveUpModal} onHide={handleCloseGiveUpModal}>
+      <Modal show={showGiveUpModal} onHide={handleCloseGiveUpModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>:(</Modal.Title>
         </Modal.Header>
@@ -246,7 +247,7 @@ const handleShare = () => {
         </Modal.Footer>
       </Modal>
 
-       <Modal show={showYouWinModal} onHide={handleCloseYouWinModal}>
+       <Modal show={showYouWinModal} onHide={handleCloseYouWinModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>Well Done!</Modal.Title>
         </Modal.Header>
@@ -285,15 +286,18 @@ const handleShare = () => {
         <div className="row justify-content-center mt-4">
           <div className="col-md-6">
 
-             <Typeahead
+             <Typeahead 
               id="user-input-field"
               className={`form-control mb-4 ${error ? 'is-invalid' : ''}`}
               onChange={setSelected}
+              flip={true}
               options={countryNames}
               disabled={hasGivenUp||hasWon}
               onKeyDown={handleKeyPress}
               placeholder="Type in a country..."
               selected={selected}
+              maxResults={4}
+              minLength={1}
               ref={typeaheadRef}
             />
             {error && <div className="invalid-feedback">{error}</div>}

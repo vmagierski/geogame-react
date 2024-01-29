@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 
 const StartModal = ({ showModal, handleCloseModal, initialCountry }) => {
   return (
-    <Modal show={showModal} onHide={handleCloseModal}>
+    <Modal show={showModal} onHide={handleCloseModal} centered>
       <Modal.Header closeButton>
         <Modal.Title>Country Borders Game!</Modal.Title>
       </Modal.Header>
