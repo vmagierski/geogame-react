@@ -56,8 +56,6 @@ function GeoMap({ dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, high
   }, [hasGivenUp, hasWon]);
 
   const onEachFeature = (feature, layer) => {
-    console.log("hasWON: " + hasWon);
-    console.log("hasGivenUp: " + hasGivenUp);
     if (isGameOver){
       layer.bindPopup(feature.properties.ADMIN);
     }
