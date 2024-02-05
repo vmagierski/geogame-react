@@ -10,6 +10,8 @@ import './App.css';
 function App() {
   const [inputValue, setInputValue] = useState('');
 
+  const [countriesData, setCountriesData] = useState(null);
+
   const [highlightedCountry, setHighlightedCountry] = useState(null);
   const [highlightedCountries, setHighlightedCountries] = useState([]);
   const [missedCountries, setMissedCountries] = useState([]);
@@ -95,18 +97,16 @@ function App() {
 
   const selectPseudoRandomCountry = () => {
     if (Object.keys(bordersData).length > 0) {
-      fetch('/geogame-react/COUNTRIESJSON.json.geojson')
-        .then(res => res.json())
-        .then(data => {
-          if (data.features.length > 0) {
+      if (countriesData){
+        if (countriesData.features.length > 0) {
             let randomCountry;
             let attempts=0;
             const today = new Date();
             const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
             const pseudoRandom = new seedrandom(seed);
             do {
-                  const randomIndex = Math.floor(pseudoRandom() * data.features.length)
-                  randomCountry = data.features[randomIndex];
+                  const randomIndex = Math.floor(pseudoRandom() * countriesData.features.length)
+                  randomCountry = countriesData.features[randomIndex];
                   attempts++;
             } while (!isValidCountry(randomCountry) && attempts<50);
             if (attempts >= 50) {
@@ -117,13 +117,43 @@ function App() {
             } else {
               console.log('found valid country: ' + JSON.stringify(randomCountry.properties.NAME))
               setInitialCountry(randomCountry);
-            }          }
-        })
-        .catch(err => console.error(err));
+            }
+        }
+      }
     }
   };
 
-  useEffect(() => startNewGame(), [bordersData]);
+  // const selectPseudoRandomCountry = () => {
+  //   if (Object.keys(bordersData).length > 0) {
+  //     fetch('/geogame-react/COUNTRIESJSON.json.geojson')
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         if (data.features.length > 0) {
+  //           let randomCountry;
+  //           let attempts=0;
+  //           const today = new Date();
+  //           const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  //           const pseudoRandom = new seedrandom(seed);
+  //           do {
+  //                 const randomIndex = Math.floor(pseudoRandom() * data.features.length)
+  //                 randomCountry = data.features[randomIndex];
+  //                 attempts++;
+  //           } while (!isValidCountry(randomCountry) && attempts<50);
+  //           if (attempts >= 50) {
+  //             alert("Site under maintenance");
+  //             console.error("Failed to find a valid country after 50 attempts"); 
+  //             console.log('last attept random country = : ' +  randomCountry.properties.NAME);
+  //             // Handle failure to find a valid country (e.g., select a default country or show an error)
+  //           } else {
+  //             console.log('found valid country: ' + JSON.stringify(randomCountry.properties.NAME))
+  //             setInitialCountry(randomCountry);
+  //           }          }
+  //       })
+  //       .catch(err => console.error(err));
+  //   }
+  // };
+
+  useEffect(() => startNewGame(), [bordersData, countriesData]);
 
 
   const handleCloseModal = () => {
@@ -281,6 +311,8 @@ const handleShare = () => {
         <div className="row justify-content-center">
           <div className="col-lg-8">
               <GeoMap 
+                countriesData={countriesData}
+                setCountriesData={setCountriesData}
                 dataUrl="/geogame-react/COUNTRIESJSON.json.geojson" 
                 highlightCountry={highlightedCountry} 
                 missedCountries={missedCountries}

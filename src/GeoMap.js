@@ -37,8 +37,7 @@ function MapEffect({ initialCountry }) {
   return null;
 }
 
-function GeoMap({ dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, highlightedCountries, missedCountries, resetGame }) {
-  const [countriesData, setCountriesData] = useState(null);
+function GeoMap({ countriesData,setCountriesData, dataUrl, initialCountry, hasGivenUp, hasWon, bordersData, highlightedCountries, missedCountries, resetGame }) {
     const [isGameOver, setIsGameOver] = useState(false); // Key for GeoJSON component
 
 
