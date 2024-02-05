@@ -161,7 +161,6 @@ function App() {
 
 const handleKeyPress = (event) => {
   if (event.key === 'Enter' ) {
-    debugger;
     
     // always upper case the first letter of the user's input, so that if
     // a user types "poland" and hits "Enter", "Poland" will be submitted
@@ -173,7 +172,7 @@ const handleKeyPress = (event) => {
       const rawinput = event.target.value;
       inputCountry = rawinput.substring(0,1).toUpperCase() + rawinput.substring(1);
     }
-    
+
     if (initialCountry && bordersData[initialCountry.properties.ADMIN]) {
       const borderCountries = bordersData[initialCountry.properties.ADMIN];
       // console.log("Input Country:", inputCountry);
