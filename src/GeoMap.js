@@ -42,12 +42,14 @@ function GeoMap({ countriesData,setCountriesData, dataUrl, initialCountry, hasGi
 
 
   useEffect(() => {
-    fetch(dataUrl)
-      .then(res => res.json())
-      .then(data => {
-        setCountriesData(data);
-      })
-      .catch(err => console.error(err));
+    if(!countriesData){
+      fetch(dataUrl)
+        .then(res => res.json())
+        .then(data => {
+          setCountriesData(data);
+        })
+        .catch(err => console.error(err));
+    }
   }, [dataUrl]);
 
   useEffect(() => {

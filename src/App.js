@@ -60,8 +60,8 @@ function App() {
 
   const startNewGame = () => {
     resetGameState();
-    selectPseudoRandomCountry();
-   // selectRandomCountryNoValidCheck();
+   // selectPseudoRandomCountry();
+    selectRandomCountryNoValidCheck();
 //    setInitialCountry();
   };
 
@@ -81,17 +81,14 @@ function App() {
 
   const selectRandomCountryNoValidCheck= () => {
     if (Object.keys(bordersData).length > 0) {
-      fetch('/geogame-react/COUNTRIESJSON.json.geojson')
-       .then(res => res.json())
-       .then(data => {
-       if (data.features.length > 0) {
-        let randomCountry;
-        const randomIndex = Math.floor(Math.random() * data.features.length)
-        randomCountry = data.features[randomIndex];
-        setInitialCountry(randomCountry);
-    
-    }})
-    .catch(err => console.error(err));
+      if (countriesData){
+        if (countriesData.features.length > 0) {
+          let randomCountry;
+          const randomIndex = Math.floor(Math.random() * countriesData.features.length)
+          randomCountry = countriesData.features[randomIndex];
+          setInitialCountry(randomCountry);
+        } 
+      }
     }
   };
 
@@ -122,36 +119,6 @@ function App() {
       }
     }
   };
-
-  // const selectPseudoRandomCountry = () => {
-  //   if (Object.keys(bordersData).length > 0) {
-  //     fetch('/geogame-react/COUNTRIESJSON.json.geojson')
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         if (data.features.length > 0) {
-  //           let randomCountry;
-  //           let attempts=0;
-  //           const today = new Date();
-  //           const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  //           const pseudoRandom = new seedrandom(seed);
-  //           do {
-  //                 const randomIndex = Math.floor(pseudoRandom() * data.features.length)
-  //                 randomCountry = data.features[randomIndex];
-  //                 attempts++;
-  //           } while (!isValidCountry(randomCountry) && attempts<50);
-  //           if (attempts >= 50) {
-  //             alert("Site under maintenance");
-  //             console.error("Failed to find a valid country after 50 attempts"); 
-  //             console.log('last attept random country = : ' +  randomCountry.properties.NAME);
-  //             // Handle failure to find a valid country (e.g., select a default country or show an error)
-  //           } else {
-  //             console.log('found valid country: ' + JSON.stringify(randomCountry.properties.NAME))
-  //             setInitialCountry(randomCountry);
-  //           }          }
-  //       })
-  //       .catch(err => console.error(err));
-  //   }
-  // };
 
   useEffect(() => startNewGame(), [bordersData, countriesData]);
 
