@@ -161,8 +161,19 @@ function App() {
 
 const handleKeyPress = (event) => {
   if (event.key === 'Enter' ) {
-    const inputCountry = selected.length > 0 ? selected[0] : (event.target ? event.target.value : "");
-
+    debugger;
+    
+    // always upper case the first letter of the user's input, so that if
+    // a user types "poland" and hits "Enter", "Poland" will be submitted
+    // which is how the coutnry name is stored in the data currently
+    let inputCountry = ""; 
+    if (selected.length > 0){
+      inputCountry = selected[0]
+    } else if (event.target){
+      const rawinput = event.target.value;
+      inputCountry = rawinput.substring(0,1).toUpperCase() + rawinput.substring(1);
+    }
+    
     if (initialCountry && bordersData[initialCountry.properties.ADMIN]) {
       const borderCountries = bordersData[initialCountry.properties.ADMIN];
       // console.log("Input Country:", inputCountry);
