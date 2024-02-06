@@ -1,0 +1,40 @@
+#TODO
+
+Remove exceptions:
+
+-  "Southern Patagonian Ice Field"
+-  "Cyprus": [
+    "Dhekelia Sovereign Base Area",
+    "Cyprus No Mans Area",
+    "Akrotiri Sovereign Base Area"
+  ],
+- Akrotiri Sovereign Base Area
+
+- Dhekelia Sovereign Base Area
+- Siachen Glacier
+- bir tawil
+- US Naval Base Guantanamo Bay
+
+For each exception name
+  - for all of it's bordering countries, remove itself as an answer from those countries
+    - if new country has no borders, remove from list as well
+
+
+
+- Add info on page crediting data sources and maps rendering
+
+- refactor code
+  - object state
+  - unused variables and any associated logic
+  - seperate react components 
+  - loading of data twice
+    - decrease datasize so loading is  faster
+        - could use abbreviations for names
+  - isValidCountry logic upon game selection
+
+- Better Datasets? French Guyana as seperate from France?
+    - add maritime borders?
+
+- Harder Scoring
+  - 2 lives
+  - Clockwise order
