@@ -60,7 +60,7 @@ function App() {
 
   const startNewGame = () => {
     resetGameState();
-   // selectPseudoRandomCountry();
+    selectPseudoRandomCountry();
     selectRandomCountryNoValidCheck();
 //    setInitialCountry();
   };
